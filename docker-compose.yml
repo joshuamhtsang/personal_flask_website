@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  website:
+    build: ./personal_flask_website
+    command: >
+      gunicorn -b 0.0.0.0:8000 
+      personal_flask_website.app
+    ports:
+      - 8000:8000
