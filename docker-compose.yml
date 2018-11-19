@@ -8,7 +8,7 @@ services:
     command: >
       gunicorn -b 0.0.0.0:8000 
       --reload
-      personal_flask_website.app
+      personal_flask_website.app:create_app()
     volumes:
       - .:/usr/src/app
     ports:
