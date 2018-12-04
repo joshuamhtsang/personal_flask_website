@@ -9,16 +9,15 @@
 
     <title>{% block title %}{% endblock %}</title>
 
-    <script
-    src="{{ url_for('static',
-    filename='js/vendor/bootstrap.min.js') }}">
-    </script>
-
     <link
     rel="stylesheet"
     href="{{ url_for('static',
     filename='css/vendor/bootstrap.css') }}"
     media="screen">
+    
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"
+            integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
+            crossorigin="anonymous"></script>
 
   </head>
   <body style>
@@ -54,5 +53,9 @@
       <div class="md-margin-top">{% block heading %}{% endblock %}</div>
       {% block body %}{% endblock %}
     </main>
+    
+    <script
+      src="{{ url_for('static', filename='js/vendor/bootstrap.js') }}">
+    </script>
   </body>
 </html>
