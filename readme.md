@@ -1,4 +1,18 @@
-To run, simply do:
+
+### virtualenv setup:
+
+$ virtualenv -p python3 .
+
+$ pip3 install -r requirements.txt
+
+Then:
+
+$ source bin/activate
+
+
+### Running the web app with Docker Compose:
+
+To run the web app, simply do:
 
 $ docker-compose up
 

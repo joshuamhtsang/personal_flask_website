@@ -1,6 +1,8 @@
 FROM python:3.7-slim
-
-ADD . /usr/src/app
-WORKDIR /usr/src/app
-
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN apt update && apt install -y \
+    python3-dev \
+    python3-pip
+COPY ./requirements.txt /usr/local/src/app/
+RUN pip3 install -r /usr/local/src/app/requirements.txt
+COPY . /usr/local/src/app/
+WORKDIR /usr/local/src/app/
