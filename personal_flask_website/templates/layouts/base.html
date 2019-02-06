@@ -52,6 +52,16 @@
         </form>
     </div>
 </nav>
+<hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
 <main class="container">
     <div class="md-margin-top">{% block heading %}{% endblock %}</div>
     {% block body %}{% endblock %}

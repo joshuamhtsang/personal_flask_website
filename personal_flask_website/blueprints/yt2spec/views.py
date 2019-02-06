@@ -8,6 +8,7 @@ yt2spec = Blueprint('yt2spec', __name__, template_folder='templates')
 def index():
     form = SpecForm()
     if form.validate_on_submit():
-        flash("helpful message here")
+        flash('YouTube URL submitted: %s' %
+              form.yt_url.data)
         return redirect(url_for('blog.index'))
     return render_template('yt2spec/index.html', title='Placeholder', form=form)
