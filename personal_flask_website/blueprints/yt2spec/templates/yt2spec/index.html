@@ -13,6 +13,7 @@ your stay.{% endblock %}
     </body>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
         <p>
             {{ form.yt_url.label }}<br>
             {{ form.yt_url() }}
