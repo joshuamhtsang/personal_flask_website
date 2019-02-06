@@ -12,6 +12,7 @@ your stay.{% endblock %}
     </div>
     </body>
     <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
         <p>
             {{ form.yt_url.label }}<br>
             {{ form.yt_url() }}
