@@ -1,0 +1,3 @@
+[submodule "advert_detection"]
+	path = advert_detection
+	url = git@github.com:joshuamhtsang/advert_detection.git
