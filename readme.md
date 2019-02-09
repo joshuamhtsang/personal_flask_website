@@ -26,5 +26,11 @@ http://localhost:8000/
 
 ### Cloning this project with all submodules
 
+Follow the recommendations on the Git official documentation:
+
 https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
+For the impatient, you can do the following when checking
+out this main project:
+
+$ git clone --recurse-submodules git@github.com:joshuamhtsang/personal_flask_website.git
