@@ -1,3 +1,4 @@
+### Personal Flask Website
 
 ### virtualenv setup:
 
@@ -23,4 +24,7 @@ http://0.0.0.0:8000
 or:
 http://localhost:8000/
 
+### Cloning this project with all submodules
+
+https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
