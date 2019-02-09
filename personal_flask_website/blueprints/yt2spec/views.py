@@ -31,6 +31,9 @@ def index():
         spec_url = response_json['spec_url']
         spec_internal_url = yt2spec_url + spec_url
 
+        # Use wget/requests to download the spectrogram to the static/images/ directory?
+
+
         return render_template('yt2spec/display_spec.html', yt2spec_internal_url=spec_internal_url)
         #return redirect(yt2spec_url + response_json['spec_url'])
         #return redirect(url_for('blog.index'))
