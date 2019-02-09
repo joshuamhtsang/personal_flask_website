@@ -26,7 +26,7 @@ def index():
         data = {
             'url': 'https://www.youtube.com/watch?v=ilNEqmfUyzI',
         }
-        r = requests.post(yt2spec_url, headers=headers, data=json.dumps(data), proxies=NO_PROXY)
+        r = requests.post(yt2spec_url, headers=headers, data=json.dumps(data))
         r.raise_for_status()
         print(r.json())
 

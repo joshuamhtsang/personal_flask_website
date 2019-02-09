@@ -7,11 +7,28 @@ services:
     build:
       context: ./personal_flask_website
       dockerfile: Dockerfile
+    expose:
+      - 8000
     command: >
       gunicorn -b 0.0.0.0:8000
       --reload
       personal_flask_website.app:create_app()
     ports:
       - 8000:8000
+    links:
+      - yt2spec
     environment:
       - PYTHONUNBUFFERED=0
+
+  yt2spec:
+    volumes:
+      - ./advert_detection/advert_detection/:/usr/local/src/advert_detection/
+    build:
+      context: ./advert_detection/advert_detection/
+      dockerfile: Dockerfile
+    expose:
+      - 6060
+    command: >
+      python3 ./flask_rest.py
+    ports:
+      - 6060:6060
