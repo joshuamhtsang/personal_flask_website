@@ -19,7 +19,7 @@ def index():
         #NO_PROXY = {
         #    'no': 'pass'
         #}
-        yt2spec_url = 'http://0.0.0.0:6060/yt2melspec'
+        yt2spec_url = 'http://yt2spec:6060/yt2melspec'
         headers = {
             'Content-Type': 'application/json',
         }
