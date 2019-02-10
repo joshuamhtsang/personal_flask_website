@@ -1,0 +1,1 @@
+from blueprints.blog.views import blog

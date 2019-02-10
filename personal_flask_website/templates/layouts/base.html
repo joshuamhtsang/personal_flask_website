@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="{% block meta_description %}{% endblock %}">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link
+            rel="stylesheet"
+            href="{{ url_for('static',
+    filename='css/vendor/bootstrap.css') }}"
+            media="screen">
+
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"
+            integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
+            crossorigin="anonymous"></script>
+
+</head>
+<body style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('page.home') }}">
+        <img src="{{ url_for('static', filename='images/pi.png') }}"
+             class="img-responsive"
+             width="60" height="60" title="JT" alt="JT"/>
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('page.home') }}">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('page.cv') }}">CV</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('blog.index') }}">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('yt2spec.index') }}">YouTube2Spectrogram</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+<main class="container">
+    <div class="md-margin-top">{% block heading %}{% endblock %}</div>
+    {% block body %}{% endblock %}
+</main>
+
+<script
+        src="{{ url_for('static', filename='js/vendor/bootstrap.js') }}">
+</script>
+</body>
+</html>
