@@ -21,8 +21,8 @@ services:
       - PYTHONUNBUFFERED=0
 
   yt2spec:
-    volumes:
-      - ./advert_detection/advert_detection/:/usr/local/src/advert_detection/
+    #volumes:
+    #  - ./advert_detection/advert_detection/:/usr/local/src/advert_detection/
     build:
       context: ./advert_detection/advert_detection/
       dockerfile: Dockerfile
