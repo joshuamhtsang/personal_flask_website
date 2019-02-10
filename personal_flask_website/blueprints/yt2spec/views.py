@@ -4,6 +4,8 @@ import json
 import requests
 import os
 import shutil
+from PIL import Image
+from io import BytesIO
 
 yt2spec = Blueprint('yt2spec', __name__, template_folder='templates')
 
@@ -16,7 +18,7 @@ def index():
               form.yt_url.data)
 
         # Make request to yt2spec API.
-        yt2spec_url = 'http://yt2spec:6060/yt2melspec'
+        yt2spec_url = 'http://yt2spec:6060/yt2melspec'.rstrip()
         headers = {
             'Content-Type': 'application/json',
         }
@@ -26,22 +28,21 @@ def index():
         response = requests.post(yt2spec_url, headers=headers, data=json.dumps(data))
         response.raise_for_status()
         response_json = json.loads(response.text)
-        print("HELLO!!!!!!")
         print(response_json)
         print(response_json['spec_url'])
-        spec_url = response_json['spec_url']
-        spec_internal_url = yt2spec_url + spec_url
+        spec_url = response_json['spec_url'].rstrip()
+        spec_internal_url = 'http://yt2spec:6060' + spec_url
+        spec_internal_url = spec_internal_url.rstrip()
 
         # Use wget/requests to download the spectrogram to the static/images/ directory?
         spec_response = requests.get(spec_internal_url, stream=True)
-        #open('qwerty.png', 'wb').write(spec_response.content)
-        with open('qwerty.png', 'wb') as out_file:
-            shutil.copyfileobj(spec_response.raw, out_file)
-        del spec_response
-        #os.rename('./qwerty.png', './personal_flask_website/static/images/qwerty.png')
+        if spec_response.status_code == 200:
+            i = Image.open(BytesIO(spec_response.content))
+            i.save('/usr/local/src/app/qwerty.png')
+            os.rename('qwerty.png', './static/images/qwerty2.png')
 
-        print(url_for('static', filename='qwerty.png'))
-        return render_template('yt2spec/display_spec.html', yt2spec_internal_url=url_for('static', filename='qwerty.png'))
-        #return redirect(yt2spec_url + response_json['spec_url'])
-        #return redirect(url_for('blog.index'))
+        return render_template(
+            'yt2spec/display_spec.html',
+            spec_img_url=url_for('static', filename='images/qwerty2.png')
+        )
     return render_template('yt2spec/index.html', title='Placeholder', form=form)
