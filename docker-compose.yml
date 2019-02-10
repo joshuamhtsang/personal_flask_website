@@ -2,8 +2,8 @@ version: '3'
 
 services:
   website:
-    volumes:
-      - .:/usr/local/src/app/
+    #volumes:
+    #  - .:/usr/local/src/app/
     build:
       context: ./personal_flask_website
       dockerfile: Dockerfile

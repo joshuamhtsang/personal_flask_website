@@ -3,6 +3,7 @@ from personal_flask_website.blueprints.yt2spec.forms import SpecForm
 import json
 import requests
 import os
+import shutil
 
 yt2spec = Blueprint('yt2spec', __name__, template_folder='templates')
 
@@ -14,7 +15,7 @@ def index():
         flash('YouTube URL submitted: %s' %
               form.yt_url.data)
 
-        # Make request to yt2spec api.
+        # Make request to yt2spec API.
         yt2spec_url = 'http://yt2spec:6060/yt2melspec'
         headers = {
             'Content-Type': 'application/json',
@@ -32,9 +33,15 @@ def index():
         spec_internal_url = yt2spec_url + spec_url
 
         # Use wget/requests to download the spectrogram to the static/images/ directory?
+        spec_response = requests.get(spec_internal_url, stream=True)
+        open('qwerty.png', 'wb').write(spec_response.content)
+        with open('qwerty.png', 'wb') as out_file:
+            shutil.copyfileobj(spec_response.raw, out_file)
+        del spec_response
+        os.rename('./qwerty.png', './personal_flask_website/static/images/qwerty.png')
 
-
-        return render_template('yt2spec/display_spec.html', yt2spec_internal_url=spec_internal_url)
+        print(url_for('static', filename='qwerty.png'))
+        return render_template('yt2spec/display_spec.html', yt2spec_internal_url=url_for('static', filename='qwerty.png'))
         #return redirect(yt2spec_url + response_json['spec_url'])
         #return redirect(url_for('blog.index'))
     return render_template('yt2spec/index.html', title='Placeholder', form=form)
