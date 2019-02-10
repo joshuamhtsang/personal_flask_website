@@ -6,6 +6,7 @@ import os
 import shutil
 from PIL import Image
 from io import BytesIO
+import sys
 
 yt2spec = Blueprint('yt2spec', __name__, template_folder='templates')
 
@@ -41,6 +42,7 @@ def index():
             i.save('/usr/local/src/app/qwerty.png')
             os.rename('qwerty.png', './static/images/qwerty2.png')
 
+        print(url_for('static', filename='images/qwerty2.png', file=sys.stderr))
         return render_template(
             'yt2spec/display_spec.html',
             spec_img_url=url_for('static', filename='images/qwerty2.png')
