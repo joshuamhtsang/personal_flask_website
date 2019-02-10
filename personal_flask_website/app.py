@@ -1,8 +1,8 @@
 from flask import Flask
 
-from personal_flask_website.blueprints.page import page
-from personal_flask_website.blueprints.blog import blog
-from personal_flask_website.blueprints.yt2spec import yt2spec
+from blueprints.page import page
+from blueprints.blog import blog
+from blueprints.yt2spec import yt2spec
 
 
 def create_app():

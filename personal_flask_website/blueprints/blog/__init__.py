@@ -1,1 +1,1 @@
-from personal_flask_website.blueprints.blog.views import blog
+from blueprints.blog.views import blog

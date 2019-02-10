@@ -1,5 +1,5 @@
 from flask import (Blueprint, render_template, flash, redirect, url_for)
-from personal_flask_website.blueprints.yt2spec.forms import SpecForm
+from blueprints.yt2spec.forms import SpecForm
 import json
 import requests
 import os
@@ -34,11 +34,11 @@ def index():
 
         # Use wget/requests to download the spectrogram to the static/images/ directory?
         spec_response = requests.get(spec_internal_url, stream=True)
-        open('qwerty.png', 'wb').write(spec_response.content)
+        #open('qwerty.png', 'wb').write(spec_response.content)
         with open('qwerty.png', 'wb') as out_file:
             shutil.copyfileobj(spec_response.raw, out_file)
         del spec_response
-        os.rename('./qwerty.png', './personal_flask_website/static/images/qwerty.png')
+        #os.rename('./qwerty.png', './personal_flask_website/static/images/qwerty.png')
 
         print(url_for('static', filename='qwerty.png'))
         return render_template('yt2spec/display_spec.html', yt2spec_internal_url=url_for('static', filename='qwerty.png'))

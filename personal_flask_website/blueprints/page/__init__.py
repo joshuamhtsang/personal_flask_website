@@ -1,1 +1,1 @@
-from personal_flask_website.blueprints.page.views import page
+from blueprints.page.views import page
