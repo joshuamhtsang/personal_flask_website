@@ -10,6 +10,8 @@ services:
     command: >
       gunicorn -b 0.0.0.0:8000
       --reload
+      --timeout 90
+      --graceful-timeout 80
       app:create_app()
     ports:
       - 8000:8000
