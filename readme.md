@@ -13,11 +13,9 @@ $ source bin/activate
 
 ### Running the web app with Docker Compose:
 
-To run the web app, simply do:
+To run the web app, simply do in project root (containing 'docker-compose.yml'):
 
-$ docker-compose up
-
-in the directory containing the docker compose yaml file.
+$ docker-compose down ; docker-compose up --build
 
 You can then see the web app at:
 http://0.0.0.0:8000
