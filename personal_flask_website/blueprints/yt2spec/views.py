@@ -25,7 +25,6 @@ def index():
         # Make request to yt2spec API.
         yt2spec_url = 'http://yt2spec:6060'.rstrip()
         endpoint_name = 'yt2melspec'.rstrip()
-        #yt2spec_url = 'http://yt2spec:6060/yt2melspec'.rstrip()
         yt2spec_ep_url = yt2spec_url + '/' + endpoint_name
         headers = {
             'Content-Type': 'application/json',
@@ -38,7 +37,6 @@ def index():
 
         response_json = json.loads(response.text)
         spec_url = response_json['spec_url'].rstrip()
-        #spec_internal_url = 'http://yt2spec:6060' + spec_url
         spec_internal_url = yt2spec_url + spec_url
         spec_internal_url = spec_internal_url.rstrip()
 
