@@ -17,6 +17,9 @@ your stay.{% endblock %}
         <p>
             {{ form.yt_url.label }}<br>
             {{ form.yt_url() }}
+            {% if form.yt_url.errors %}
+                <ul class="errors">{% for error in form.yt_url.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
