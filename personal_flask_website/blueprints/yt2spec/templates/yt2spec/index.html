@@ -11,6 +11,12 @@ your stay.{% endblock %}
         <h1>Generate Mel-Spectrograms from YouTube</h1>
     </div>
     </body>
+    <p>
+        Have you ever wondered how your favourite music looks like when represented in frequency-time space?
+        Well, now is your chance!
+        Simply find any YouTube video in your browser and copy the contents of the address bar into the field below.
+        The audio present in the video will be converted into a pretty spectrogram.
+    </p>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         {{ form.csrf_token }}
