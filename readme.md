@@ -22,6 +22,11 @@ http://0.0.0.0:8000
 or:
 http://localhost:8000/
 
+To run on VPS, use detach mode:
+
+$ docker-compose down ; docker-compose up --build -d
+
+
 ### Cloning this project with all submodules
 
 Follow the recommendations on the Git official documentation:
