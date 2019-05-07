@@ -37,3 +37,8 @@ For the impatient, you can do the following when checking
 out this main project:
 
 $ git clone --recurse-submodules git@github.com:joshuamhtsang/personal_flask_website.git
+
+$ git submodule update --remote
+
+The latter command is needed to pull the latest branch commits specified in
+.gitmodules file.
