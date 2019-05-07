@@ -27,6 +27,6 @@ services:
     expose:
       - 6060
     command: >
-      python3 ./flask_rest.py
+      python3 -u ./flask_rest.py
     ports:
       - 6060:6060
