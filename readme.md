@@ -38,6 +38,8 @@ out this main project:
 
 $ git clone --recurse-submodules git@github.com:joshuamhtsang/personal_flask_website.git
 
+then 'cd' into the the checked-out directory and do: 
+
 $ git submodule update --remote
 
 The latter command is needed to pull the latest branch commits specified in
