@@ -39,6 +39,6 @@ services:
       - 1234
     command: >
       python3 -u ./flask_rest.py
-    port:
+    ports:
       - 1234:1234
  
