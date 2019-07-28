@@ -2,3 +2,7 @@
 	path = advert_detection
 	url = git@github.com:joshuamhtsang/advert_detection.git
 	branch = master
+[submodule "sleeper"]
+	path = sleeper
+	url = git@github.com:joshuamhtsang/sleeper.git
+	branch = master

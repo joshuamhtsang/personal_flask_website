@@ -30,3 +30,15 @@ services:
       python3 -u ./flask_rest.py
     ports:
       - 6060:6060
+
+  sleeper:
+    build:
+      context: ./sleeper/sleeper/
+      dockerfile: Dockerfile
+    expose:
+      - 1234
+    command: >
+      python3 -u ./flask_rest.py
+    ports:
+      - 1234:1234
+ 
