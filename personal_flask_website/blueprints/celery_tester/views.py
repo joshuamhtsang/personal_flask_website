@@ -12,7 +12,7 @@ celery_tester = Blueprint('celery_tester', __name__, template_folder='templates'
 
 @celery_tester.route('/celerytester', methods=['GET', 'POST'])
 def index():
-    #form = SleeperForm()
-    return render_template('celery_tester/index.html', title='Placeholder')
+    form = SleeperForm()
+    return render_template('celery_tester/index.html', title='Placeholder', form=form)
 
 

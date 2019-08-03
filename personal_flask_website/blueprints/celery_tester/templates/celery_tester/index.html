@@ -14,4 +14,16 @@ your stay.{% endblock %}
     <p>
         Welcome to the Celery async demo!
     </p>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <p>
+            {{ form.sleep_duration.label }}<br>
+            {{ form.sleep_duration() }}
+            {% if form.sleep_duration.errors %}
+                <ul class="errors">{% for error in form.sleep_duration.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
 {% endblock %}
