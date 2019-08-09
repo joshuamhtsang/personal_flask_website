@@ -47,9 +47,15 @@ def index():
             spec_filename = str(uuid.uuid4()) + '.png'
             i.save(os.path.join('/usr/local/src/app/', spec_filename))
             os.rename(spec_filename, os.path.join('./static/images/', spec_filename))
+            return render_template(
+                'yt2spec/display_spec.html',
+                spec_img_url=url_for('static', filename='images/' + spec_filename)
+            )
+        else:
+            return render_template(
+                'yt2spec/error.html',
+                sorry_img_url=url_for('static', filename='images/sorry.png')
+            )
 
-        return render_template(
-            'yt2spec/display_spec.html',
-            spec_img_url=url_for('static', filename='images/' + spec_filename)
-        )
+
     return render_template('yt2spec/index.html', title='Placeholder', form=form)
