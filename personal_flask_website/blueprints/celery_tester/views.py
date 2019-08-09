@@ -25,6 +25,10 @@ def index():
         }
         response = requests.get(sleeper_ep_url, params=payload)
         print(response)
+
+        response_json = json.loads(response.text)
+
+
     return render_template('celery_tester/index.html', title='Placeholder', form=form)
 
 
