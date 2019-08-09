@@ -14,6 +14,9 @@ def create_app():
     app.config['CELERY_BROKER_URL'] = 'amqp://guest:guest@rabbitmq:5672'
     app.config['CELERY_RESULT_BACKEND'] = 'rpc://'
 
+    celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+    celery.conf.update(app.config)
+
     app.register_blueprint(page)
     app.register_blueprint(blog)
     app.register_blueprint(yt2spec)

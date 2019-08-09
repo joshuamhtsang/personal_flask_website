@@ -1,5 +1,6 @@
 from flask import (Blueprint, render_template, flash, redirect, url_for)
 from blueprints.celery_tester.forms import SleeperForm
+import celery as celery
 import json
 import requests
 import os
@@ -8,6 +9,12 @@ import sys
 import uuid
 
 celery_tester = Blueprint('celery_tester', __name__, template_folder='templates')
+
+
+@celery.task
+def yay():
+    print("shoot!")
+    return 0
 
 
 @celery_tester.route('/celerytester', methods=['GET', 'POST'])
