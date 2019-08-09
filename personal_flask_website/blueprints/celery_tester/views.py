@@ -17,6 +17,13 @@ def yay():
     return 0
 
 
+@celery.task
+def send_sleeper_request(endpoint_url, payload):
+    response = requests.get(endpoint_url, params=payload)
+
+    return json.loads(response.text)
+
+
 @celery_tester.route('/celerytester', methods=['GET', 'POST'])
 def index():
     form = SleeperForm()
@@ -30,11 +37,12 @@ def index():
         payload = {
             'n': sleep_duration
         }
-        response = requests.get(sleeper_ep_url, params=payload)
-        print(response)
 
-        response_json = json.loads(response.text)
+        #response = requests.get(sleeper_ep_url, params=payload)
+        #print(response)
+        #response_json = json.loads(response.text)
 
+        task = send_sleeper_request.delay(sleeper_ep_url, payload)
 
     return render_template('celery_tester/index.html', title='Placeholder', form=form)
 

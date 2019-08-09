@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    hostname: "some-rabbit"
+
   website:
     build:
       context: ./personal_flask_website/
@@ -42,10 +49,3 @@ services:
       python3 -u ./flask_rest.py
     ports:
       - 1234:1234
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - 5672:5672
-      - 15672:15672
-    hostname: "josh-rabbit"
