@@ -32,3 +32,4 @@ def index():
     return render_template('celery_tester/index.html', title='Placeholder', form=form)
 
 
+
