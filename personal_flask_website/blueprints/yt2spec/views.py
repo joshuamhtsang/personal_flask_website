@@ -32,8 +32,14 @@ def index():
         data = {
             'url': yt_url,
         }
-        response = requests.post(yt2spec_ep_url, headers=headers, data=json.dumps(data))
-        response.raise_for_status()
+        try:
+            response = requests.post(yt2spec_ep_url, headers=headers, data=json.dumps(data))
+            response.raise_for_status()
+        except Exception as e:
+            return render_template(
+                'yt2spec/error.html',
+                sorry_img_url=url_for('static', filename='images/sorry.png')
+            )
 
         response_json = json.loads(response.text)
         spec_url = response_json['spec_url'].rstrip()
@@ -56,6 +62,5 @@ def index():
                 'yt2spec/error.html',
                 sorry_img_url=url_for('static', filename='images/sorry.png')
             )
-
 
     return render_template('yt2spec/index.html', title='Placeholder', form=form)
