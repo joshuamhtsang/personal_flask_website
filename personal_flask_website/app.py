@@ -1,5 +1,5 @@
 from flask import Flask
-#from celery import Celery
+from celery import Celery
 
 from blueprints.page import page
 from blueprints.blog import blog
