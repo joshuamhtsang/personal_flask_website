@@ -8,13 +8,19 @@ from blueprints.celery_tester import celery_tester
 
 CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672'
 CELERY_BACKEND = 'rpc://'
+CELERY_TASK_LIST = [
+    'blueprints.celery_tester.tasks',
+]
 
 
-def make_celery(app):
+def make_celery(app=None):
+    app = app or create_app()
+
     celery = Celery(
         app.import_name,
         backend=app.config['CELERY_RESULT_BACKEND'],
-        broker=app.config['CELERY_BROKER_URL']
+        broker=app.config['CELERY_BROKER_URL'],
+        include=CELERY_TASK_LIST
     )
     celery.conf.update(app.config)
 
@@ -38,8 +44,6 @@ def create_app():
         CELERY_BROKER_URL=CELERY_BROKER_URL,
         CELERY_RESULT_BACKEND=CELERY_BACKEND
     )
-    celery = make_celery(app)
-    print("Celery setup!")
 
     app.register_blueprint(page)
     app.register_blueprint(blog)

@@ -28,6 +28,14 @@ services:
     environment:
       - PYTHONUNBUFFERED=0
 
+  celery:
+    build:
+      context: ./personal_flask_website/
+      dockerfile: Dockerfile
+    command: celery worker --loglevel=info -A blueprints.celery_tester.tasks
+    links:
+      - rabbitmq
+
   yt2spec:
     build:
       context: ./advert_detection/advert_detection/

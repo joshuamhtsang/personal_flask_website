@@ -38,11 +38,15 @@ def index():
             'n': sleep_duration
         }
 
-        #response = requests.get(sleeper_ep_url, params=payload)
-        #print(response)
-        #response_json = json.loads(response.text)
+        response = requests.get(sleeper_ep_url, params=payload)
+        print(response)
+        response_json = json.loads(response.text)
 
-        task = send_sleeper_request.delay(sleeper_ep_url, payload)
+        # This prevents circular imports.
+        from blueprints.celery_tester.tasks import shoot
+        shoot.delay()
+
+        #task = send_sleeper_request.delay(sleeper_ep_url, payload)
 
     return render_template('celery_tester/index.html', title='Placeholder', form=form)
 
