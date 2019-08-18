@@ -1,5 +1,6 @@
 from flask import (Blueprint, render_template, flash, redirect, url_for)
 from blueprints.celery_tester.forms import SleeperForm
+import celery as celery
 import json
 import requests
 import os
@@ -23,12 +24,20 @@ def index():
         payload = {
             'n': sleep_duration
         }
-        response = requests.get(sleeper_ep_url, params=payload)
-        print(response)
 
-        response_json = json.loads(response.text)
+        # Vanilla (non-Celery) HTTP request.
+        # response = requests.get(sleeper_ep_url, params=payload)
+        # print(response)
+        # response_json = json.loads(response.text)
 
+        # This prevents circular imports.
+        from blueprints.celery_tester.tasks import shoot
+        shoot.delay()
+
+        from blueprints.celery_tester.tasks import send_sleeper_request
+        task = send_sleeper_request.delay(sleeper_ep_url, payload)
 
     return render_template('celery_tester/index.html', title='Placeholder', form=form)
+
 
 

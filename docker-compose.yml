@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    hostname: "some-rabbit"
+
   website:
     build:
       context: ./personal_flask_website/
@@ -17,8 +24,27 @@ services:
       - 8000:8000
     links:
       - yt2spec
+      - rabbitmq
     environment:
       - PYTHONUNBUFFERED=0
+
+  celery:
+    build:
+      context: ./personal_flask_website/
+      dockerfile: Dockerfile
+    command: celery worker --loglevel=info -A blueprints.celery_tester.tasks
+    links:
+      - rabbitmq
+
+  celeryflower:
+    build:
+      context: ./personal_flask_website/
+      dockerfile: Dockerfile
+    command: celery -A blueprints.celery_tester.tasks flower
+    ports:
+      - 5555:5555
+    links:
+      - rabbitmq
 
   yt2spec:
     build:
@@ -41,4 +67,3 @@ services:
       python3 -u ./flask_rest.py
     ports:
       - 1234:1234
- 
