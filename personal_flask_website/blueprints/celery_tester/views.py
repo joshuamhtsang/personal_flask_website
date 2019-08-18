@@ -30,10 +30,6 @@ def index():
         # print(response)
         # response_json = json.loads(response.text)
 
-        # This prevents circular imports.
-        from blueprints.celery_tester.tasks import shoot
-        shoot.delay()
-
         from blueprints.celery_tester.tasks import send_sleeper_request
         task = send_sleeper_request.delay(sleeper_ep_url, payload)
 
