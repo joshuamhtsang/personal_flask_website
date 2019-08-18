@@ -11,19 +11,6 @@ import uuid
 celery_tester = Blueprint('celery_tester', __name__, template_folder='templates')
 
 
-@celery.task
-def yay():
-    print("shoot!")
-    return 0
-
-
-@celery.task
-def send_sleeper_request(endpoint_url, payload):
-    response = requests.get(endpoint_url, params=payload)
-
-    return json.loads(response.text)
-
-
 @celery_tester.route('/celerytester', methods=['GET', 'POST'])
 def index():
     form = SleeperForm()
