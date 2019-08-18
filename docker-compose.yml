@@ -36,6 +36,16 @@ services:
     links:
       - rabbitmq
 
+  celeryflower:
+    build:
+      context: ./personal_flask_website/
+      dockerfile: Dockerfile
+    command: celery -A blueprints.celery_tester.tasks flower
+    ports:
+      - 5555:5555
+    links:
+      - rabbitmq
+
   yt2spec:
     build:
       context: ./advert_detection/advert_detection/
