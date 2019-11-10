@@ -9,4 +9,4 @@ def index():
     form = ListForm()
     if form.validate_on_submit():
         flash('List submitted: %s' % form.choices_list_str)
-    return render_template('short_straw/index.html', title='Placeholder')
+    return render_template('short_straw/index.html', title='Placeholder', form=form)
