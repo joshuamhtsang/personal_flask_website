@@ -19,7 +19,7 @@ services:
       --reload
       --timeout 90
       --graceful-timeout 80
-      app:create_app()
+      app:myapp
     ports:
       - 8000:8000
     links:
