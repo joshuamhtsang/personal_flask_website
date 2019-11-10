@@ -5,6 +5,7 @@ from blueprints.page import page
 from blueprints.blog import blog
 from blueprints.yt2spec import yt2spec
 from blueprints.celery_tester import celery_tester
+from blueprints.short_straw import short_straw
 
 CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672'
 CELERY_BACKEND = 'rpc://'
@@ -49,5 +50,9 @@ def create_app():
     app.register_blueprint(blog)
     app.register_blueprint(yt2spec)
     app.register_blueprint(celery_tester)
+    app.register_blueprint(short_straw)
 
     return app
+
+
+myapp = create_app()
