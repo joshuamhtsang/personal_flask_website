@@ -53,3 +53,6 @@ def create_app():
     app.register_blueprint(short_straw)
 
     return app
+
+
+myapp = create_app()
