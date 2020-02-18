@@ -6,3 +6,6 @@
 	path = sleeper
 	url = git@github.com:joshuamhtsang/sleeper.git
 	branch = master
+[submodule "short_straw"]
+	path = short_straw
+	url = git@github.com:joshuamhtsang/short_straw.git
