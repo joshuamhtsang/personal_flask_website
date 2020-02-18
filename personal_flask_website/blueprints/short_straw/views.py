@@ -28,6 +28,8 @@ def index():
         except Exception as e:
             return data
 
+        return "The session id is %s." % response.text
+
     # RandomDrawForm()
     draw_form = RandomDrawForm()
     if draw_form.validate_on_submit():
