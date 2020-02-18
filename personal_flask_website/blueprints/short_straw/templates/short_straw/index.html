@@ -12,15 +12,27 @@ your stay.{% endblock %}
     </div>
     </body>
     <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        {{ form.csrf_token }}
+        {{ list_form.hidden_tag() }}
+        {{ list_form.csrf_token }}
         <p>
-            {{ form.choices_list_str.label }}<br>
-            {{ form.choices_list_str() }}
-            {% if form.choices_list_str.errors %}
-                <ul class="errors">{% for error in form.choices_list_str.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {{ list_form.choices_list_str.label }}<br>
+            {{ list_form.choices_list_str() }}
+            {% if list_form.choices_list_str.errors %}
+                <ul class="errors">{% for error in list_form.choices_list_str.errors %}<li>{{ error }}</li>{% endfor %}</ul>
             {% endif %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ list_form.submit() }}</p>
+    </form>
+    <form action="" method="post" novalidate>
+        {{ draw_form.hidden_tag() }}
+        {{ draw_form.csrf_token }}
+        <p>
+            {{ draw_form.session_id_str.label }}<br>
+            {{ draw_form.session_id_str() }}
+            {% if draw_form.session_id_str.errors %}
+                <ul class="errors">{% for error in draw_form.session_id_str.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+        </p>
+        <p>{{ draw_form.submit() }}</p>
     </form>
 {% endblock %}
