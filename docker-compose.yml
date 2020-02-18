@@ -79,7 +79,7 @@ services:
     ports:
       - 2828:2828
     depends_on:
-      - "postgres"
+      - postgres
 
   postgres:
     image: "postgres:latest"
