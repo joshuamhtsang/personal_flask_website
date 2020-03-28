@@ -48,7 +48,7 @@ services:
 
   yt2spec:
     build:
-      context: ./advert_detection/advert_detection/
+      context: ./yt2spec/yt2spec/
       dockerfile: Dockerfile
     expose:
       - 6060

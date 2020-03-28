@@ -1,6 +1,6 @@
-[submodule "advert_detection"]
-	path = advert_detection
-	url = git@github.com:joshuamhtsang/advert_detection.git
+[submodule "yt2spec"]
+	path = yt2spec
+	url = git@github.com:joshuamhtsang/yt2spec.git
 	branch = master
 [submodule "sleeper"]
 	path = sleeper
