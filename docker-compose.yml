@@ -67,3 +67,39 @@ services:
       python3 -u ./flask_rest.py
     ports:
       - 1234:1234
+
+  shortstraw:
+    build:
+      context: ./short_straw/short_straw/
+      dockerfile: Dockerfile
+    expose:
+      - 2828
+    command: >
+      python3 -u ./flask_rest.py
+    ports:
+      - 2828:2828
+    depends_on:
+      - postgres
+
+  postgres:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_DB: shortstraw
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+    - ./postgres_data:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    links:
+    - postgres
+    depends_on:
+    - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+    - "5050:80"
